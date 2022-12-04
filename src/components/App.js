@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { GlobalStyle } from 'components/GlobalStyle';
 import FeedbackOptions from './FeedbackOptions';
 import Statistics from './Statistics';
 import Section from './Section';
@@ -63,6 +64,7 @@ class App extends Component {
             <Notification message="There is no feedback" />
           )}
         </Section>
+        <GlobalStyle />
       </>
     );
   }
