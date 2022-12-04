@@ -5,23 +5,27 @@ export const FeedbackList = styled.ul`
   gap: 30px;
 `;
 
+export const FeedbackItem = styled.li``;
+
 export const FeedbackButton = styled.button`
   font-size: 20px;
   background-color: transparent;
   border-radius: 10px;
   padding: 10px;
   border: none;
+  cursor: pointer;
   box-shadow: 0px 10px 13px -7px #000000, 0px 0px 9px 5px rgba(0, 0, 0, 0);
-  &:hover {
+
+  :hover {
     transform: scale(1.2);
+    color: #ffffff;
     background-color: ${prop => {
-      switch (prop.name) {
-        case 'good':
-          return '#82fa4d';
-        case 'neutral':
-          return '#4d7cfa';
-        case 'bad':
-          return '#fa4d4d ';
+      if (prop.children === 'good') {
+        return '#04bb00';
+      } else if (prop.children === 'neutral') {
+        return '#4d7cfa';
+      } else if (prop.children === 'bad') {
+        return '#fa4d4d';
       }
     }};
   }

@@ -45,6 +45,7 @@ class App extends Component {
 
     return (
       <>
+        <GlobalStyle />
         <Section title="Please leave feedback">
           <FeedbackOptions
             options={['good', 'neutral', 'bad']}
@@ -64,7 +65,6 @@ class App extends Component {
             <Notification message="There is no feedback" />
           )}
         </Section>
-        <GlobalStyle />
       </>
     );
   }
