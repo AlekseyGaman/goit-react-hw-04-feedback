@@ -17,7 +17,7 @@ class App extends Component {
     if (option) {
       this.setState(prevState => ({ [option]: prevState[option] + 1 }));
     }
-    console.log(event.target.name);
+    // console.log(event.target.name);
   };
 
   countTotalFeedback() {
