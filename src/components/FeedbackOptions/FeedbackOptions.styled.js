@@ -20,11 +20,11 @@ export const FeedbackButton = styled.button`
     transform: scale(1.2);
     color: #ffffff;
     background-color: ${prop => {
-      if (prop.children === 'good') {
+      if (prop.children === 'Good') {
         return '#04bb00';
-      } else if (prop.children === 'neutral') {
+      } else if (prop.children === 'Neutral') {
         return '#4d7cfa';
-      } else if (prop.children === 'bad') {
+      } else if (prop.children === 'Bad') {
         return '#fa4d4d';
       }
     }};

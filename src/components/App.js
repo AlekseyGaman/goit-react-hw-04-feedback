@@ -48,7 +48,7 @@ class App extends Component {
         <GlobalStyle />
         <Section title="Please leave feedback">
           <FeedbackOptions
-            options={['good', 'neutral', 'bad']}
+            options={['Good', 'Neutral', 'Bad']}
             onLeaveFeedback={handleClickOnButton}
           ></FeedbackOptions>
         </Section>
