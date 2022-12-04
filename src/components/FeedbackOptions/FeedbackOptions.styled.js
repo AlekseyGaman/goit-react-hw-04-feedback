@@ -14,17 +14,18 @@ export const FeedbackButton = styled.button`
   padding: 10px;
   border: none;
   cursor: pointer;
+  text-transform: capitalize;
   box-shadow: 0px 10px 13px -7px #000000, 0px 0px 9px 5px rgba(0, 0, 0, 0);
 
   :hover {
     transform: scale(1.2);
     color: #ffffff;
     background-color: ${prop => {
-      if (prop.children === 'Good') {
+      if (prop.children === 'good') {
         return '#04bb00';
-      } else if (prop.children === 'Neutral') {
+      } else if (prop.children === 'neutral') {
         return '#4d7cfa';
-      } else if (prop.children === 'Bad') {
+      } else if (prop.children === 'bad') {
         return '#fa4d4d';
       }
     }};
