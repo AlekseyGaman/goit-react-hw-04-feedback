@@ -1,73 +1,64 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import { GlobalStyle } from 'components/GlobalStyle';
 import FeedbackOptions from './FeedbackOptions';
 import Statistics from './Statistics';
 import Section from './Section';
 import Notification from './Notification';
 
-class App extends Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
+export const App = () => {
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
 
-  handleClickOnButton = event => {
-    const option = event.target.name;
-    if (option) {
-      this.setState(prevState => ({ [option]: prevState[option] + 1 }));
+  const feedbackName = ['good', 'neutral', 'bad'];
+
+  const countTotalFeedback = good + neutral + bad;
+
+  const handleClickOnButton = event => {
+    switch (event.target.name) {
+      case 'good':
+        setGood(prevState => prevState + 1);
+        break;
+      case 'neutral':
+        setNeutral(prevState => prevState + 1);
+        break;
+      case 'bad':
+        setBad(prevState => prevState + 1);
+        break;
+
+      default:
+        break;
     }
-    // console.log(event.target.name);
   };
 
-  countTotalFeedback() {
-    const { good, neutral, bad } = this.state;
-    return good + neutral + bad;
-  }
-
-  countPositiveFeedback = () => {
-    const totalFeedback = this.countTotalFeedback();
-    const goodFeedback = this.state.good;
-    let result = 0;
-
-    if (totalFeedback > 0) {
-      result = Math.trunc((goodFeedback / totalFeedback) * 100);
-    }
-
-    return `${result}%`;
+  const countPositiveFeedback = () => {
+    return countTotalFeedback !== 0
+      ? Math.round((good / countTotalFeedback) * 100)
+      : 0;
   };
 
-  render() {
-    const handleClickOnButton = this.handleClickOnButton;
-    const { good, neutral, bad } = this.state;
-    const countTotalFeedback = this.countTotalFeedback();
-    const countPositiveFeedback = this.countPositiveFeedback();
-
-    return (
-      <>
-        <GlobalStyle />
-        <Section title="Please leave feedback">
-          <FeedbackOptions
-            options={['good', 'neutral', 'bad']}
-            onLeaveFeedback={handleClickOnButton}
-          ></FeedbackOptions>
-        </Section>
-        <Section title="Statistics">
-          {countTotalFeedback > 0 ? (
-            <Statistics
-              good={good}
-              neutral={neutral}
-              bad={bad}
-              total={countTotalFeedback}
-              positivePercentage={countPositiveFeedback}
-            />
-          ) : (
-            <Notification message="There is no feedback" />
-          )}
-        </Section>
-      </>
-    );
-  }
-}
-
-export default App;
+  return (
+    <>
+      <GlobalStyle />
+      <Section title="Please leave feedback">
+        <FeedbackOptions
+          options={feedbackName}
+          onLeaveFeedback={handleClickOnButton}
+        ></FeedbackOptions>
+      </Section>
+      <Section title="Statistics">
+        {countTotalFeedback > 0 ? (
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={countTotalFeedback}
+            positivePercentage={countPositiveFeedback()}
+          />
+        ) : (
+          <Notification message="There is no feedback" />
+        )}
+      </Section>
+    </>
+  );
+};
